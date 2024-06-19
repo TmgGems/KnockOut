@@ -1,37 +1,56 @@
 ﻿
-<button type="button" class="btn btn-primary">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
     Add New Product
 </button>
 
-@* <div class="modal fade" id="productModal">
-    <div class="card-body" data-bind="with:NewStudent">
-        <div class="form-group">
-            <label >Product Name</label>
-            <input class="form-control" name="ProductName" data-bind="value:name" required />
-        </div>
-        <div class="form-group">
-            <label >Product Quantity</label>
-            <input class="form-control" name="ProductQuantity" data-bind="value:quantity" required />
-        </div>
-        <div class="form-group">
-            <label >Company</label>
-            <input class="form-control" name="company" data-bind="value:company" />
-        </div>
-        <div class="form-group">
-            <label >Manufactured Date </label>
-            <input type="date" name="manufacturedDate" class="form-control" data-bind="value: manufacturedDate" />
-        </div>
-        <div class="form-group">
-            <label >Expired Date </label>
-            <input type="date" name="expiryDate" class="form-control" data-bind="value:expiryDate" />
-        </div>
-        <div class="form-group">
-            <label >Place Order</label><br />
-            <input type="radio" name="order" value="Yes" data-bind="checked: order" /> Yes
-            <input type="radio" name="order" value="No" data-bind="checked: order" /> No
+@* //<div class="modal fade" id="productModal"> *@
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Register Product</h5>
+                <button data-bind="click:$root.ClosedModel" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="card-body" data-bind="with:NewProduct">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input class="form-control" name="ProductName" data-bind="value:name" required />
+                </div>
+                <div class="form-group">
+                    <label>Product Quantity</label>
+                    <input class="form-control" name="ProductQuantity" data-bind="value:quantity" required />
+                </div>
+                <div class="form-group">
+                    <label>Company</label>
+                    <input class="form-control" name="company" data-bind="value:company" />
+                </div>
+                <div class="form-group">
+                    <label>Manufactured Date </label>
+                    <input type="date" name="manufacturedDate" class="form-control" data-bind="value: manufacturedDate" />
+                </div>
+                <div class="form-group">
+                    <label>Expiry Date </label>
+                    <input type="date" name="expiryDate" class="form-control" data-bind="value:expiryDate" />
+                </div>
+                <div class="form-group">
+                    <label>Place Order</label><br />
+                    <input type="radio" name="order" value="Yes" data-bind="checked: order" /> Yes
+                    <input type="radio" name="order" value="No" data-bind="checked: order" /> No
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal" data-bind="click:$root.AddProduct">
+                    <span data-bind="ifnot: isupdated">add</span>
+
+                    <span data-bind="if: isupdated">update</span>
+                </button>
+                <button class="btn btn-primary" data-bind="click: $root.resetForm">Reset</button>
+            </div>
+            <br /><br />
         </div>
     </div>
-</div> *@
+</div>       
 <table class="table table-striped">
     <thead>
         <tr>
@@ -55,16 +74,16 @@
             <td data-bind="text:expiryDate"></td>
             <td data-bind="text:order"></td>
             <td>
-                <div >
-                    <button>Edit</button>
-                    <button>Delete</button>
+                <div>
+                    <button data-bind="click:$root.selectProduct" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#productModal">Edit</button>
+                    <button data-bind="click: $root.DeleteProduct" class="btn btn-sm btn-danger">Delete</button>
                 </div>
             </td>
         </tr>
     </tbody>
 </table>
 
-@section Scripts{
+@section Scripts {
     <script src="~/js/KnockOut.js"></script>
     <script src="~/js/product/productcontroller.js"></script>
     <script src="~/js/product/productmodel.js"></script>
