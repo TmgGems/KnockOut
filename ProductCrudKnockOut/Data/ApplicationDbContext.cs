@@ -11,5 +11,7 @@ namespace ProductCrudKnockOut.Data
         }
 
         public DbSet<ProductModel> Products { get; set; }
+
+        public DbSet<CompanyModel> Companies {  get; set; }
     }
 }

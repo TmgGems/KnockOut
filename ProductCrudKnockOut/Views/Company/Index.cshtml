@@ -1,0 +1,37 @@
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Company Name</th>
+            <th>Product Manufacture</th>
+            <th>Establishment Date</th>
+            <th>Contact Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach:Companies">
+        <tr>
+            <td></td>
+            <td data-bind="text:companyName"></td>
+            <td data-bind="text:productId"></td>
+            <td data-bind="text:companyEstd"></td>
+            <td data-bind="text:companyPhNo"></td>
+            <td>
+                <div>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/company/knockout.js"></script>
+    <script src="~/js/company/companycontroller.js"></script>
+    <script src="~/js/company/companymodel.js"></script>
+    <script>
+        var obj = new companyController();
+        ko.applyBindings(obj);
+    </script>
+}

@@ -39,11 +39,12 @@
                     <input type="radio" name="order" value="No" data-bind="checked: order" /> No
                 </div>
             </div>
+
             <div class="card-footer">
                 <button class="btn btn-primary" data-bs-dismiss="modal" data-bind="click:$root.AddProduct">
-                    <span data-bind="ifnot: isupdated">add</span>
+                    <span data-bind="ifnot: isupdated">Add</span>
 
-                    <span data-bind="if: isupdated">update</span>
+                    <span data-bind="if: isupdated">Update</span>
                 </button>
                 <button class="btn btn-primary" data-bind="click: $root.resetForm">Reset</button>
             </div>

@@ -12,7 +12,9 @@ var productController = function (item) {
     self.isEditing = ko.observable(false);
 
 
-    self.getData = function () {
+    self.getData = function () 
+
+    {
         var url = baseUrl;
         console.log("Fetching data from URL: " + url);
 
