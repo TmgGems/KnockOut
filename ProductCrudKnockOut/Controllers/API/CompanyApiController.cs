@@ -1,17 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProductCrudKnockOut.Data;
 using ProductCrudKnockOut.Models;
+using ProductCrudKnockOut.Models.ViewModels;
 using ProductCrudKnockOut.Services;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProductCrudKnockOut.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CompanyApiController
     {
         public ICompanyService _companyService;
-        public CompanyApiController(ICompanyService companyService)
+        private ApplicationDbContext _db;
+        public CompanyApiController(ICompanyService companyService, ApplicationDbContext db)
         {
             _companyService = companyService;
+            _db = db;
+
         }
         [HttpGet]
         public List<CompanyModel> GetCompanies()
@@ -23,9 +30,9 @@ namespace ProductCrudKnockOut.Controllers.API
         [HttpPost]
         public bool Add(CompanyModel model)
         {
-           
+
             bool data = _companyService.Add(model);
-            if(data)
+            if (data)
             {
                 return true;
             }
@@ -54,5 +61,49 @@ namespace ProductCrudKnockOut.Controllers.API
             _companyService.Delete(id);
             return id;
         }
+
+
+        [HttpGet]
+        public List<CompanyProductViewModel> GetCompanieesWithProducts()
+        {
+            var data = _companyService.GetCompanieesWithProducts();
+            return data;
+        }
+
+        //[HttpGet("/[action]")]
+        //public List<CompanyViewModel> getCompanywithProd()
+        //{
+
+
+
+        //    var cmp = _db.Companies.Select(x => new { CompanyName = x.CompanyName, ProductManufactured = x.Product.Name, CompanyEstd = x.CompanyEstd, CompanyPhNo = x.CompanyPhNo });
+
+        //    List<CompanyViewModel> vm = new List<CompanyViewModel>();
+        //    foreach (var company in cmp)
+        //    {
+
+        //        vm.Add(new CompanyViewModel { CompanyEstd = company.CompanyEstd, CompanyName = company.CompanyName, CompanyPhNo = company.CompanyPhNo, ProductManufactured = company.ProductManufactured });
+        //    }
+        //    return vm;
+        //}
+
+        //[HttpGet("/[action]")]
+
+        //public ProductViewModel CompanyProduct()
+        //{
+
+
+
+        //    var product = _db.Products.ToList();
+        //    var company = _db.Companies.ToList();
+        //    var result = new ProductViewModel()
+        //    {
+        //        CompanyList = company,
+        //        ProductList = product,
+        //    };
+        //    return result;
+
+
+        //}
     }
 }

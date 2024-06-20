@@ -1,4 +1,5 @@
 ﻿using ProductCrudKnockOut.Models;
+using ProductCrudKnockOut.Models.ViewModels;
 
 namespace ProductCrudKnockOut.Services
 {
@@ -6,6 +7,7 @@ namespace ProductCrudKnockOut.Services
     {
         List<CompanyModel> GetAll();
 
+        List<CompanyProductViewModel> GetCompanieesWithProducts();
         CompanyModel GetById(int id);
 
         bool Add(CompanyModel model);

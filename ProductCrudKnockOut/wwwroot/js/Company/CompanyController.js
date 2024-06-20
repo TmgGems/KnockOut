@@ -7,8 +7,9 @@
 
 
     //Get Data
-    self.getData = function () {
-        var url = baseUrl;
+    self.getData = function ()
+    {
+        var url = baseUrl + "/GetCompanieesWithProducts";
         console.log("Fetching data from URL: " + url);
 
         ajax.get(url).then(function (data) {
@@ -26,7 +27,8 @@
     self.getData();
 }
 
-var ajax = {
+var ajax =
+{
     get: function (url) {
         return $.ajax({
             method: "GET",

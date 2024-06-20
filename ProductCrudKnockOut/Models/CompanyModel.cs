@@ -18,6 +18,7 @@ namespace ProductCrudKnockOut.Models
 
         public int ProductId {  get; set; }
        
+
         [ValidateNever]
         [JsonIgnore]
         public ProductModel ? Product {  get; set; }

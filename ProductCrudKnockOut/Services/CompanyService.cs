@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using ProductCrudKnockOut.Data;
 using ProductCrudKnockOut.Models;
+using ProductCrudKnockOut.Models.ViewModels;
 
 namespace ProductCrudKnockOut.Services
 {
@@ -43,6 +44,23 @@ namespace ProductCrudKnockOut.Services
         {
             var datafromDb = _context.Companies.Find(id);
             return datafromDb;
+        }
+
+        public List<CompanyProductViewModel> GetCompanieesWithProducts()
+        {
+            var companyProducts = from company in _context.Companies
+                                  join product in _context.Products on company.ProductId equals product.Id
+
+                                  select new CompanyProductViewModel
+                                  {
+                                      CompanyName = company.CompanyName,
+                                      ProductManufactured = product.Name,
+                                      CompanyEstd = company.CompanyEstd,
+                                      CompanyPhNo = company.CompanyPhNo
+
+                                  };
+            return companyProducts.ToList();
+
         }
 
         public void Updates(CompanyModel model)
