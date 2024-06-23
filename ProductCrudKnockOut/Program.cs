@@ -9,8 +9,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection")));
 builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<ICompanyService, CompanyService>();   
-
+builder.Services.AddTransient<ICompanyService, CompanyService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
 
 
 var app = builder.Build();
