@@ -8,6 +8,8 @@
 
         public string ProductManufactured { get; set; }
 
+        public int ProductId { get; set; }
+
 
         public DateTime CompanyEstd { get; set; }
 

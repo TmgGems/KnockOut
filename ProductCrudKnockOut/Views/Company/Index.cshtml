@@ -1,4 +1,55 @@
-﻿<table class="table table-striped">
+﻿<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#companyModal" data-bind="click:$root.getProducts,click:resetForm">
+    Add New Company
+</button>
+
+<div class="modal fade" id="companyModal" tabindex="-1" aria-labelledby="companyModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="companyModalLabel">Register Company</h5>
+                <button @* data-bind="click: $root.resetForm" *@ type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="card-body" data-bind="with:NewCompany">
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input class="form-control" name="companyname" data-bind="value:companyName" required />
+                </div>
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control" name="productname"
+                            data-bind="options:$root.Products,
+                                    optionsText: 'productName',
+                                    optionsValue: 'productId',
+                                    value: productId,
+                                    optionsCaption: 'Select a product'">
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    <label>Establishment Date</label>
+                    <input type="datetime-local" class="form-control" name="estd" data-bind="value:companyEstd" />
+                </div>
+                <div class="form-group">
+                    <label>Contact  No </label>
+                    <input name="contactInfo" class="form-control" data-bind="value: companyPhNo" />
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal" data-bind="click:$root.AddCompany">
+                    <span data-bind="ifnot: isupdated">Add</span>
+
+                    <span data-bind="if: isupdated">Update</span>
+                </button>
+                <button class="btn btn-primary" data-bind="click: $root.resetForm">Reset</button>
+            </div>
+            <br /><br />
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
     <thead>
         <tr>
             <th>S.N</th>
@@ -18,8 +69,8 @@
             <td data-bind="text:companyPhNo"></td>
             <td>
                 <div>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button data-bind="click:$root.selectCompany" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#companyModal">Edit</button>
+                    <button data-bind="click: $root.DeleteCompany" class="btn btn-sm btn-danger">Delete</button>
                 </div>
             </td>
         </tr>

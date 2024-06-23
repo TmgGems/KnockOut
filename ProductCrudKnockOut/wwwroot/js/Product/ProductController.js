@@ -72,7 +72,8 @@ var productController = function (item) {
 
 
 
-    self.selectProduct = (model) => {
+    self.selectProduct = (model) =>
+    {
         self.selectedProduct(model);
         self.NewProduct(new productModel(ko.toJS(model)));
         self.isupdated(true);

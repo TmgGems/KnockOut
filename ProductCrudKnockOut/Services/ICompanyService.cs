@@ -7,7 +7,12 @@ namespace ProductCrudKnockOut.Services
     {
         List<CompanyModel> GetAll();
 
+
         List<CompanyProductViewModel> GetCompanieesWithProducts();
+
+        List<string> GetProductNames();
+
+        IEnumerable<GetProductsVM> GetProducts();
         CompanyModel GetById(int id);
 
         bool Add(CompanyModel model);

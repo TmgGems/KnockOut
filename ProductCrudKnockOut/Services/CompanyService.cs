@@ -28,7 +28,7 @@ namespace ProductCrudKnockOut.Services
         public int Delete(int id)
         {
             var data = _context.Companies.Find(id);
-            _context.Companies.Add(data);
+            _context.Companies.Remove(data);
             _context.SaveChanges();
             return id;
         }
@@ -53,8 +53,10 @@ namespace ProductCrudKnockOut.Services
 
                                   select new CompanyProductViewModel
                                   {
+                                      Id = company.Id,
                                       CompanyName = company.CompanyName,
                                       ProductManufactured = product.Name,
+                                      ProductId = product.Id,
                                       CompanyEstd = company.CompanyEstd,
                                       CompanyPhNo = company.CompanyPhNo
 
@@ -63,10 +65,29 @@ namespace ProductCrudKnockOut.Services
 
         }
 
+        public List<string> GetProductNames()
+        {
+            List<string> productNames = _context.Products.Select(p => p.Name).ToList();
+
+            return productNames;
+        }
+
+        public IEnumerable<GetProductsVM> GetProducts()
+        {
+            var products = _context.Products.Select( product => new GetProductsVM
+            {
+                ProductId = product.Id,
+                ProductName = product.Name
+            }).ToList();
+            return products;
+        }
+
         public void Updates(CompanyModel model)
         {
             _context.Companies.Update(model);
             _context.SaveChanges();
         }
+
+       
     }
 }
