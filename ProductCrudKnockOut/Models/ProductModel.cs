@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProductCrudKnockOut.Models.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProductCrudKnockOut.Models
 {
@@ -25,6 +26,9 @@ namespace ProductCrudKnockOut.Models
         [Display(Name="Place Order")]
         public string Order { get; set; }
 
-
+        internal object Select(Func<object, GetProductsVM> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

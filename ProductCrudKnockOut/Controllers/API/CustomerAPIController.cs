@@ -33,6 +33,7 @@ namespace ProductCrudKnockOut.Controllers.API
         {
             return _customerService.Add(customer);
         }
+
         [HttpPut]
         public void Update(CustomerModel customer)
         {

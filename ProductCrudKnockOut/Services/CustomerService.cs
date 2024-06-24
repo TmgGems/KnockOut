@@ -1,4 +1,5 @@
-﻿using ProductCrudKnockOut.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductCrudKnockOut.Data;
 using ProductCrudKnockOut.Models;
 using ProductCrudKnockOut.Models.ViewModels;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -76,6 +77,21 @@ namespace ProductCrudKnockOut.Services
                 CompanyName = company.CompanyName
             }).ToList();
             return datas;
+
+            //var comapniesWithproducts = _context.Companies.Include(company => company.Product)
+            //    .Select(company => new GetComapniesVM
+            //{
+            //    CompanyId = company.Id,
+            //    CompanyName = company.CompanyName,
+            //    Products = company.Product.Select(p => new GetProductsVM
+            //    {
+            //        ProductId = p.Id,
+            //        ProductName = p.Name
+            //    }).ToList()
+
+            //});
+            //return comapniesWithproducts;
+
         }
         public List<GetProductsVM> GetProductsName()
         {
